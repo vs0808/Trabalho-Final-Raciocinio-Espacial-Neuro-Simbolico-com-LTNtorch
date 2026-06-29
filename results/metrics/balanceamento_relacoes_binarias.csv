@@ -1,0 +1,7 @@
+﻿relacao,total,positivos,negativos,proporcao_positivos,proporcao_negativos
+leftOf,625,300,325,0.48,0.52
+rightOf,625,300,325,0.48,0.52
+below,625,300,325,0.48,0.52
+above,625,300,325,0.48,0.52
+closeTo,625,102,523,0.1632,0.8368
+canStack,625,116,509,0.1856,0.8144

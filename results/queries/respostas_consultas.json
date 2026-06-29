@@ -1,0 +1,1751 @@
+{
+  "consultas": [
+    {
+      "id": "consulta_1",
+      "pergunta": "Existe algum objeto pequeno abaixo de um cilindro e à esquerda de um quadrado?",
+      "formula": "∃x(IsSmall(x) ∧ ∃y(IsCylinder(y) ∧ Below(x,y)) ∧ ∃z(IsSquare(z) ∧ LeftOf(x,z)))",
+      "valor_verdade": 0.7273955020584211,
+      "resposta": "Sim",
+      "melhor_evidencia": {
+        "objeto_x": {
+          "id_objeto": 21,
+          "x": 0.0583,
+          "y": 0.2814,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        },
+        "objeto_y": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_z": {
+          "id_objeto": 15,
+          "x": 0.6649,
+          "y": 0.7052,
+          "cor": "azul",
+          "forma": "quadrado",
+          "tamanho": "grande"
+        },
+        "componentes": {
+          "isSmall(21)": 1.0,
+          "isCylinder(3)": 1.0,
+          "below(21,3)": 0.8371618390083313,
+          "isSquare(15)": 1.0,
+          "leftOf(21,15)": 0.8688827753067017
+        }
+      }
+    },
+    {
+      "id": "consulta_2",
+      "pergunta": "Existe um cone verde entre dois objetos?",
+      "formula": "∃x,y,z(IsCone(x) ∧ IsGreen(x) ∧ InBetween(x,y,z))",
+      "valor_verdade": 0.8391939401626587,
+      "resposta": "Sim",
+      "melhor_evidencia": {
+        "objeto_x": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_y": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_z": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "componentes": {
+          "isCone(22)": 1.0,
+          "isGreen(22)": 1.0,
+          "inBetween(22,24,6)": 0.8391939401626587
+        }
+      }
+    },
+    {
+      "id": "consulta_3",
+      "pergunta": "Se dois triângulos estão próximos, eles têm o mesmo tamanho?",
+      "formula": "∀x,y((IsTriangle(x) ∧ IsTriangle(y) ∧ CloseTo(x,y)) → SameSize(x,y))",
+      "valor_verdade": 0.9265936048356731,
+      "resposta": "Sim",
+      "pior_evidencia": {
+        "objeto_x": {
+          "id_objeto": 0,
+          "x": 0.774,
+          "y": 0.4389,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        },
+        "objeto_y": {
+          "id_objeto": 17,
+          "x": 0.6684,
+          "y": 0.4711,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "id_x": 0,
+        "id_y": 17,
+        "premissa": 0.9422849416732788,
+        "conclusao_sameSize": 0.0,
+        "implicacao": 0.05771505832672119,
+        "componentes": {
+          "isTriangle(0)": 1.0,
+          "isTriangle(17)": 1.0,
+          "closeTo(0,17)": 0.9422849416732788,
+          "sameSize(0,17)": 0.0
+        }
+      },
+      "melhor_caso_com_premissa_ativa": {
+        "objeto_x": {
+          "id_objeto": 0,
+          "x": 0.774,
+          "y": 0.4389,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        },
+        "objeto_y": {
+          "id_objeto": 17,
+          "x": 0.6684,
+          "y": 0.4711,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "id_x": 0,
+        "id_y": 17,
+        "premissa": 0.9422849416732788,
+        "conclusao_sameSize": 0.0,
+        "implicacao": 0.05771505832672119,
+        "componentes": {
+          "isTriangle(0)": 1.0,
+          "isTriangle(17)": 1.0,
+          "closeTo(0,17)": 0.9422849416732788,
+          "sameSize(0,17)": 0.0
+        }
+      }
+    },
+    {
+      "id": "consulta_4",
+      "pergunta": "Existe algum objeto que pode ser empilhado sobre outro?",
+      "formula": "∃x,y CanStack(x,y)",
+      "valor_verdade": 0.9498980641365051,
+      "resposta": "Sim",
+      "melhor_evidencia": {
+        "objeto_x": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_y": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "componentes": {
+          "canStack(6,14)": 0.9498980641365051
+        }
+      }
+    }
+  ],
+  "top_pares_binarios": {
+    "leftOf": [
+      {
+        "id_a": 8,
+        "id_b": 3,
+        "score": 0.9953359961509705,
+        "objeto_a": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 24,
+        "id_b": 3,
+        "score": 0.9935668110847473,
+        "objeto_a": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 1,
+        "id_b": 3,
+        "score": 0.9918696880340576,
+        "objeto_a": {
+          "id_objeto": 1,
+          "x": 0.0942,
+          "y": 0.9756,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 8,
+        "id_b": 5,
+        "score": 0.988186240196228,
+        "objeto_a": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 8,
+        "id_b": 18,
+        "score": 0.9858257174491882,
+        "objeto_a": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 18,
+          "x": 0.765,
+          "y": 0.6347,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 8,
+        "id_b": 6,
+        "score": 0.9839052557945251,
+        "objeto_a": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 8,
+        "id_b": 11,
+        "score": 0.9825612902641296,
+        "objeto_a": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 11,
+          "x": 0.6698,
+          "y": 0.4372,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 24,
+        "id_b": 5,
+        "score": 0.981676459312439,
+        "objeto_a": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 21,
+        "id_b": 3,
+        "score": 0.9813057780265808,
+        "objeto_a": {
+          "id_objeto": 21,
+          "x": 0.0583,
+          "y": 0.2814,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 24,
+        "id_b": 18,
+        "score": 0.9807659387588501,
+        "objeto_a": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 18,
+          "x": 0.765,
+          "y": 0.6347,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      }
+    ],
+    "rightOf": [
+      {
+        "id_a": 3,
+        "id_b": 8,
+        "score": 0.9951270818710327,
+        "objeto_a": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 3,
+        "id_b": 24,
+        "score": 0.9945831894874573,
+        "objeto_a": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 3,
+        "id_b": 1,
+        "score": 0.9875267148017883,
+        "objeto_a": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 1,
+          "x": 0.0942,
+          "y": 0.9756,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 5,
+        "id_b": 8,
+        "score": 0.9863482713699341,
+        "objeto_a": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 3,
+        "id_b": 21,
+        "score": 0.9847924709320068,
+        "objeto_a": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 21,
+          "x": 0.0583,
+          "y": 0.2814,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 18,
+        "id_b": 8,
+        "score": 0.9839274287223816,
+        "objeto_a": {
+          "id_objeto": 18,
+          "x": 0.765,
+          "y": 0.6347,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 5,
+        "id_b": 24,
+        "score": 0.9834008812904358,
+        "objeto_a": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 18,
+        "id_b": 24,
+        "score": 0.9816693663597107,
+        "objeto_a": {
+          "id_objeto": 18,
+          "x": 0.765,
+          "y": 0.6347,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 24,
+          "x": 0.0227,
+          "y": 0.09,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 11,
+        "id_b": 8,
+        "score": 0.9794135093688965,
+        "objeto_a": {
+          "id_objeto": 11,
+          "x": 0.6698,
+          "y": 0.4372,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 6,
+        "id_b": 8,
+        "score": 0.9773343205451965,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 8,
+          "x": 0.1543,
+          "y": 0.683,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "pequeno"
+        }
+      }
+    ],
+    "below": [
+      {
+        "id_a": 10,
+        "id_b": 6,
+        "score": 0.9142366051673889,
+        "objeto_a": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 14,
+        "id_b": 6,
+        "score": 0.9044222831726074,
+        "objeto_a": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 14,
+        "id_b": 22,
+        "score": 0.9000648260116577,
+        "objeto_a": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 10,
+        "id_b": 5,
+        "score": 0.899225652217865,
+        "objeto_a": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 10,
+        "id_b": 22,
+        "score": 0.8956332206726074,
+        "objeto_a": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 2,
+        "id_b": 6,
+        "score": 0.8946270942687988,
+        "objeto_a": {
+          "id_objeto": 2,
+          "x": 0.7861,
+          "y": 0.1281,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 10,
+        "id_b": 3,
+        "score": 0.8944778442382812,
+        "objeto_a": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 2,
+        "id_b": 22,
+        "score": 0.8943731784820557,
+        "objeto_a": {
+          "id_objeto": 2,
+          "x": 0.7861,
+          "y": 0.1281,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 4,
+        "id_b": 22,
+        "score": 0.8915202021598816,
+        "objeto_a": {
+          "id_objeto": 4,
+          "x": 0.4434,
+          "y": 0.2272,
+          "cor": "vermelho",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 10,
+        "id_b": 23,
+        "score": 0.8891660571098328,
+        "objeto_a": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 23,
+          "x": 0.4064,
+          "y": 0.814,
+          "cor": "verde",
+          "forma": "quadrado",
+          "tamanho": "pequeno"
+        }
+      }
+    ],
+    "above": [
+      {
+        "id_a": 6,
+        "id_b": 14,
+        "score": 0.9537835121154785,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 22,
+        "id_b": 14,
+        "score": 0.9441238045692444,
+        "objeto_a": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 22,
+        "id_b": 10,
+        "score": 0.9383907318115234,
+        "objeto_a": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 23,
+        "id_b": 14,
+        "score": 0.9370652437210083,
+        "objeto_a": {
+          "id_objeto": 23,
+          "x": 0.4064,
+          "y": 0.814,
+          "cor": "verde",
+          "forma": "quadrado",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 6,
+        "id_b": 10,
+        "score": 0.9324153661727905,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 1,
+        "id_b": 10,
+        "score": 0.9293845295906067,
+        "objeto_a": {
+          "id_objeto": 1,
+          "x": 0.0942,
+          "y": 0.9756,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 23,
+        "id_b": 10,
+        "score": 0.9282885789871216,
+        "objeto_a": {
+          "id_objeto": 23,
+          "x": 0.4064,
+          "y": 0.814,
+          "cor": "verde",
+          "forma": "quadrado",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 1,
+        "id_b": 14,
+        "score": 0.9251416325569153,
+        "objeto_a": {
+          "id_objeto": 1,
+          "x": 0.0942,
+          "y": 0.9756,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 3,
+        "id_b": 14,
+        "score": 0.9190748929977417,
+        "objeto_a": {
+          "id_objeto": 3,
+          "x": 0.9268,
+          "y": 0.6439,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 5,
+        "id_b": 10,
+        "score": 0.9175600409507751,
+        "objeto_a": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      }
+    ],
+    "closeTo": [
+      {
+        "id_a": 11,
+        "id_b": 17,
+        "score": 0.9868814945220947,
+        "objeto_a": {
+          "id_objeto": 11,
+          "x": 0.6698,
+          "y": 0.4372,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 17,
+          "x": 0.6684,
+          "y": 0.4711,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 17,
+        "id_b": 11,
+        "score": 0.9868814945220947,
+        "objeto_a": {
+          "id_objeto": 17,
+          "x": 0.6684,
+          "y": 0.4711,
+          "cor": "vermelho",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 11,
+          "x": 0.6698,
+          "y": 0.4372,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 7,
+        "id_b": 20,
+        "score": 0.9774603843688965,
+        "objeto_a": {
+          "id_objeto": 7,
+          "x": 0.1946,
+          "y": 0.4667,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 20,
+          "x": 0.2146,
+          "y": 0.4085,
+          "cor": "azul",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 20,
+        "id_b": 7,
+        "score": 0.9774603843688965,
+        "objeto_a": {
+          "id_objeto": 20,
+          "x": 0.2146,
+          "y": 0.4085,
+          "cor": "azul",
+          "forma": "triangulo",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 7,
+          "x": 0.1946,
+          "y": 0.4667,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 5,
+        "id_b": 18,
+        "score": 0.9769295454025269,
+        "objeto_a": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 18,
+          "x": 0.765,
+          "y": 0.6347,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 18,
+        "id_b": 5,
+        "score": 0.9769295454025269,
+        "objeto_a": {
+          "id_objeto": 18,
+          "x": 0.765,
+          "y": 0.6347,
+          "cor": "verde",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 5,
+          "x": 0.8276,
+          "y": 0.6317,
+          "cor": "vermelho",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 4,
+        "id_b": 13,
+        "score": 0.9658883213996887,
+        "objeto_a": {
+          "id_objeto": 4,
+          "x": 0.4434,
+          "y": 0.2272,
+          "cor": "vermelho",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 13,
+          "x": 0.3875,
+          "y": 0.2883,
+          "cor": "azul",
+          "forma": "quadrado",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 13,
+        "id_b": 4,
+        "score": 0.9658883213996887,
+        "objeto_a": {
+          "id_objeto": 13,
+          "x": 0.3875,
+          "y": 0.2883,
+          "cor": "azul",
+          "forma": "quadrado",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 4,
+          "x": 0.4434,
+          "y": 0.2272,
+          "cor": "vermelho",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 10,
+        "id_b": 14,
+        "score": 0.963841438293457,
+        "objeto_a": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 14,
+        "id_b": 10,
+        "score": 0.963841438293457,
+        "objeto_a": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      }
+    ],
+    "canStack": [
+      {
+        "id_a": 6,
+        "id_b": 14,
+        "score": 0.9498980641365051,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 6,
+        "id_b": 2,
+        "score": 0.9462268948554993,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 2,
+          "x": 0.7861,
+          "y": 0.1281,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 6,
+        "id_b": 4,
+        "score": 0.9424411058425903,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 4,
+          "x": 0.4434,
+          "y": 0.2272,
+          "cor": "vermelho",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 6,
+        "id_b": 10,
+        "score": 0.9092974066734314,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      },
+      {
+        "id_a": 22,
+        "id_b": 14,
+        "score": 0.9044751524925232,
+        "objeto_a": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 6,
+        "id_b": 13,
+        "score": 0.9036291241645813,
+        "objeto_a": {
+          "id_objeto": 6,
+          "x": 0.3545,
+          "y": 0.9707,
+          "cor": "verde",
+          "forma": "triangulo",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 13,
+          "x": 0.3875,
+          "y": 0.2883,
+          "cor": "azul",
+          "forma": "quadrado",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 1,
+        "id_b": 14,
+        "score": 0.8941965699195862,
+        "objeto_a": {
+          "id_objeto": 1,
+          "x": 0.0942,
+          "y": 0.9756,
+          "cor": "azul",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 14,
+          "x": 0.1398,
+          "y": 0.1999,
+          "cor": "azul",
+          "forma": "circulo",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 22,
+        "id_b": 4,
+        "score": 0.8925179243087769,
+        "objeto_a": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 4,
+          "x": 0.4434,
+          "y": 0.2272,
+          "cor": "vermelho",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 22,
+        "id_b": 2,
+        "score": 0.8916270136833191,
+        "objeto_a": {
+          "id_objeto": 22,
+          "x": 0.6619,
+          "y": 0.557,
+          "cor": "verde",
+          "forma": "cone",
+          "tamanho": "grande"
+        },
+        "objeto_b": {
+          "id_objeto": 2,
+          "x": 0.7861,
+          "y": 0.1281,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "grande"
+        }
+      },
+      {
+        "id_a": 23,
+        "id_b": 10,
+        "score": 0.8914936184883118,
+        "objeto_a": {
+          "id_objeto": 23,
+          "x": 0.4064,
+          "y": 0.814,
+          "cor": "verde",
+          "forma": "quadrado",
+          "tamanho": "pequeno"
+        },
+        "objeto_b": {
+          "id_objeto": 10,
+          "x": 0.1895,
+          "y": 0.1299,
+          "cor": "azul",
+          "forma": "cilindro",
+          "tamanho": "pequeno"
+        }
+      }
+    ]
+  },
+  "top_triplas_inbetween": [
+    {
+      "id_x": 16,
+      "id_y": 24,
+      "id_z": 3,
+      "score": 0.9375609159469604,
+      "objeto_x": {
+        "id_objeto": 16,
+        "x": 0.4589,
+        "y": 0.5687,
+        "cor": "vermelho",
+        "forma": "circulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 9,
+      "id_y": 24,
+      "id_z": 3,
+      "score": 0.9357425570487976,
+      "objeto_x": {
+        "id_objeto": 9,
+        "x": 0.3258,
+        "y": 0.3705,
+        "cor": "azul",
+        "forma": "circulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 12,
+      "id_y": 24,
+      "id_z": 3,
+      "score": 0.9309272766113281,
+      "objeto_x": {
+        "id_objeto": 12,
+        "x": 0.7003,
+        "y": 0.3124,
+        "cor": "azul",
+        "forma": "triangulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 16,
+      "id_y": 3,
+      "id_z": 24,
+      "score": 0.9284729361534119,
+      "objeto_x": {
+        "id_objeto": 16,
+        "x": 0.4589,
+        "y": 0.5687,
+        "cor": "vermelho",
+        "forma": "circulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 9,
+      "id_y": 3,
+      "id_z": 24,
+      "score": 0.9272605180740356,
+      "objeto_x": {
+        "id_objeto": 9,
+        "x": 0.3258,
+        "y": 0.3705,
+        "cor": "azul",
+        "forma": "circulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 5,
+      "id_y": 24,
+      "id_z": 3,
+      "score": 0.9160796403884888,
+      "objeto_x": {
+        "id_objeto": 5,
+        "x": 0.8276,
+        "y": 0.6317,
+        "cor": "vermelho",
+        "forma": "circulo",
+        "tamanho": "grande"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 12,
+      "id_y": 3,
+      "id_z": 24,
+      "score": 0.9148386120796204,
+      "objeto_x": {
+        "id_objeto": 12,
+        "x": 0.7003,
+        "y": 0.3124,
+        "cor": "azul",
+        "forma": "triangulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 9,
+      "id_y": 24,
+      "id_z": 18,
+      "score": 0.9120659232139587,
+      "objeto_x": {
+        "id_objeto": 9,
+        "x": 0.3258,
+        "y": 0.3705,
+        "cor": "azul",
+        "forma": "circulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 18,
+        "x": 0.765,
+        "y": 0.6347,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "pequeno"
+      }
+    },
+    {
+      "id_x": 9,
+      "id_y": 24,
+      "id_z": 6,
+      "score": 0.9115091562271118,
+      "objeto_x": {
+        "id_objeto": 9,
+        "x": 0.3258,
+        "y": 0.3705,
+        "cor": "azul",
+        "forma": "circulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 6,
+        "x": 0.3545,
+        "y": 0.9707,
+        "cor": "verde",
+        "forma": "triangulo",
+        "tamanho": "grande"
+      }
+    },
+    {
+      "id_x": 20,
+      "id_y": 24,
+      "id_z": 3,
+      "score": 0.910237729549408,
+      "objeto_x": {
+        "id_objeto": 20,
+        "x": 0.2146,
+        "y": 0.4085,
+        "cor": "azul",
+        "forma": "triangulo",
+        "tamanho": "pequeno"
+      },
+      "objeto_y": {
+        "id_objeto": 24,
+        "x": 0.0227,
+        "y": 0.09,
+        "cor": "azul",
+        "forma": "cone",
+        "tamanho": "grande"
+      },
+      "objeto_z": {
+        "id_objeto": 3,
+        "x": 0.9268,
+        "y": 0.6439,
+        "cor": "verde",
+        "forma": "cilindro",
+        "tamanho": "grande"
+      }
+    }
+  ]
+}

@@ -103,6 +103,42 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
 
 ---
 
+### consulta_5 — Existe um objeto que esteja à esquerda de todos os outros (último da esquerda)?
+
+**Fórmula:** `lastOnTheLeft(x) = ∃x(∀y LeftOf(x,y))`
+
+**Valor de verdade:** `0.4611`
+
+**Resposta:** `Não`
+
+**Melhor evidência encontrada:**
+
+- objeto_x: Objeto 8 (azul, cone, pequeno, x=0.1543, y=0.6830)
+
+**Componentes da evidência:**
+- `Forall_y leftOf(8,y)` = `0.8041`
+- `Exists_x Forall_y leftOf(x,y) [LTN]` = `0.4611`
+
+---
+
+### consulta_6 — Existe um objeto que esteja à direita de todos os outros (último da direita)?
+
+**Fórmula:** `lastOnTheRight(x) = ∃x(∀y RightOf(x,y))`
+
+**Valor de verdade:** `0.4567`
+
+**Resposta:** `Não`
+
+**Melhor evidência encontrada:**
+
+- objeto_x: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
+
+**Componentes da evidência:**
+- `Forall_y rightOf(3,y)` = `0.8161`
+- `Exists_x Forall_y rightOf(x,y) [LTN]` = `0.4567`
+
+---
+
 ## 2. Top pares por relação binária
 
 ### Relação `leftOf`
@@ -227,7 +263,7 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
 7. `above(23,10)` = `0.9283`
    - A: Objeto 23 (verde, quadrado, pequeno, x=0.4064, y=0.8140)
    - B: Objeto 10 (azul, cilindro, pequeno, x=0.1895, y=0.1299)
-8. `above(1,14)` = `0.9251`
+8. `above(1,14)` = `0.9252`
    - A: Objeto 1 (azul, cone, grande, x=0.0942, y=0.9756)
    - B: Objeto 14 (azul, circulo, grande, x=0.1398, y=0.1999)
 9. `above(3,14)` = `0.9191`
@@ -305,19 +341,19 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
 
 ## 3. Top triplas para `inBetween`
 
-1. `inBetween(16,24,3)` = `0.9376`
+1. `inBetween(16,24,3)` = `0.9375`
    - X: Objeto 16 (vermelho, circulo, pequeno, x=0.4589, y=0.5687)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
-2. `inBetween(9,24,3)` = `0.9357`
+2. `inBetween(9,24,3)` = `0.9358`
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
-3. `inBetween(12,24,3)` = `0.9309`
+3. `inBetween(12,24,3)` = `0.9311`
    - X: Objeto 12 (azul, triangulo, pequeno, x=0.7003, y=0.3124)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
-4. `inBetween(16,3,24)` = `0.9285`
+4. `inBetween(16,3,24)` = `0.9284`
    - X: Objeto 16 (vermelho, circulo, pequeno, x=0.4589, y=0.5687)
    - Y: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
    - Z: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
@@ -325,7 +361,7 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
    - Z: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
-6. `inBetween(5,24,3)` = `0.9161`
+6. `inBetween(5,24,3)` = `0.9159`
    - X: Objeto 5 (vermelho, circulo, grande, x=0.8276, y=0.6317)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
@@ -341,7 +377,7 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 6 (verde, triangulo, grande, x=0.3545, y=0.9707)
-10. `inBetween(20,24,3)` = `0.9102`
+10. `inBetween(20,24,3)` = `0.9103`
    - X: Objeto 20 (azul, triangulo, pequeno, x=0.2146, y=0.4085)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)

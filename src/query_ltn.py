@@ -14,11 +14,18 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
+import ltn
 
 from src.ltn_predicates import (
     TrainableBinaryPredicate,
     TrainableTernaryPredicate,
     SmoothCloseToPredicate,
+)
+
+from src.ltn_axioms import (
+    criar_operadores_logicos,
+    criar_variaveis_ltn,
+    formulas_extremos_horizontais,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -882,6 +889,172 @@ def consulta_4_existe_empilhamento(
     }
 
 
+@torch.no_grad()
+def avaliar_formulas_extremos_horizontais(
+    tensor_objetos: torch.Tensor,
+    modelos: dict[str, nn.Module],
+) -> dict[str, float]:
+    """
+    Avalia as fórmulas lastOnTheLeft e lastOnTheRight com os quantificadores
+    fuzzy do LTNtorch.
+
+    Fórmulas:
+    - lastOnTheLeft  = ∃x (∀y leftOf(x, y))
+    - lastOnTheRight = ∃x (∀y rightOf(x, y))
+
+    Quantificadores usados:
+    - Forall com AggregPMeanError(p=2)
+    - Exists com AggregPMean(p=2)
+    """
+
+    operadores = criar_operadores_logicos()
+    variaveis = criar_variaveis_ltn(tensor_objetos)
+
+    predicados = {
+        "leftOf": ltn.Predicate(modelos["leftOf"]),
+        "rightOf": ltn.Predicate(modelos["rightOf"]),
+    }
+
+    formulas = formulas_extremos_horizontais(
+        variaveis=variaveis,
+        predicados=predicados,
+        operadores=operadores,
+    )
+
+    return {
+        nome: float(formula.value.detach().cpu().item())
+        for nome, formula in formulas.items()
+    }
+
+
+def consulta_extremo_horizontal(
+    df_objetos: pd.DataFrame,
+    tensor_objetos: torch.Tensor,
+    modelos: dict[str, nn.Module],
+    nome_formula: str,
+    nome_relacao: str,
+    id_consulta: str,
+    pergunta: str,
+    formula_texto: str,
+) -> dict[str, Any]:
+    """
+    Consulta genérica para os extremos horizontais da cena.
+
+    O valor de verdade oficial da consulta vem dos quantificadores do LTNtorch,
+    por meio de avaliar_formulas_extremos_horizontais.
+
+    Além do valor agregado, esta função calcula uma evidência interpretável:
+    para cada candidato x, replicamos o ∀y com o agregador AggregPMeanError(p=2)
+    e reportamos o objeto que maximiza a quantificação universal.
+
+    Observação:
+    como leftOf e rightOf são irreflexivos e o ∀y inclui o próprio x,
+    o valor de verdade nunca chega a 1, mesmo para o objeto do extremo.
+    Por isso a resposta é dada pela existência de um candidato claramente
+    dominante, e não apenas pelo corte padrão de 0.5.
+    """
+
+    valores_formulas = avaliar_formulas_extremos_horizontais(
+        tensor_objetos=tensor_objetos,
+        modelos=modelos,
+    )
+
+    valor_formula = valores_formulas[nome_formula]
+
+    n = len(df_objetos)
+
+    melhor_id = -1
+    melhor_forall = -1.0
+    forall_por_objeto: dict[int, float] = {}
+
+    for id_x in range(n):
+        scores = [
+            score_binario(modelos, tensor_objetos, nome_relacao, id_x, id_y)
+            for id_y in range(n)
+        ]
+
+        valor_forall = forall_aggreg_pmean_error(scores, p=2)
+        forall_por_objeto[id_x] = valor_forall
+
+        if valor_forall > melhor_forall:
+            melhor_forall = valor_forall
+            melhor_id = id_x
+
+    melhor_evidencia = {
+        "objeto_x": objeto_para_dict(df_objetos, melhor_id),
+        "componentes": {
+            f"Forall_y {nome_relacao}({melhor_id},y)": melhor_forall,
+            f"Exists_x Forall_y {nome_relacao}(x,y) [LTN]": valor_formula,
+        },
+    }
+
+    return {
+        "id": id_consulta,
+        "pergunta": pergunta,
+        "formula": formula_texto,
+        "valor_verdade": float(valor_formula),
+        "resposta": texto_resposta_booleana(valor_formula),
+        "melhor_evidencia": melhor_evidencia,
+        "forall_por_objeto": {
+            str(id_x): float(valor) for id_x, valor in forall_por_objeto.items()
+        },
+    }
+
+
+def consulta_5_last_on_the_left(
+    df_objetos: pd.DataFrame,
+    tensor_objetos: torch.Tensor,
+    modelos: dict[str, nn.Module],
+) -> dict[str, Any]:
+    """
+    Consulta 5.
+
+    Pergunta:
+    Existe um objeto que esteja à esquerda de todos os outros?
+
+    Fórmula:
+    lastOnTheLeft(x) = ∃x (∀y leftOf(x, y))
+    """
+
+    return consulta_extremo_horizontal(
+        df_objetos=df_objetos,
+        tensor_objetos=tensor_objetos,
+        modelos=modelos,
+        nome_formula="lastOnTheLeft",
+        nome_relacao="leftOf",
+        id_consulta="consulta_5",
+        pergunta="Existe um objeto que esteja à esquerda de todos os outros (último da esquerda)?",
+        formula_texto="lastOnTheLeft(x) = ∃x(∀y LeftOf(x,y))",
+    )
+
+
+def consulta_6_last_on_the_right(
+    df_objetos: pd.DataFrame,
+    tensor_objetos: torch.Tensor,
+    modelos: dict[str, nn.Module],
+) -> dict[str, Any]:
+    """
+    Consulta 6.
+
+    Pergunta:
+    Existe um objeto que esteja à direita de todos os outros?
+
+    Fórmula:
+    lastOnTheRight(x) = ∃x (∀y rightOf(x, y))
+    """
+
+    return consulta_extremo_horizontal(
+        df_objetos=df_objetos,
+        tensor_objetos=tensor_objetos,
+        modelos=modelos,
+        nome_formula="lastOnTheRight",
+        nome_relacao="rightOf",
+        id_consulta="consulta_6",
+        pergunta="Existe um objeto que esteja à direita de todos os outros (último da direita)?",
+        formula_texto="lastOnTheRight(x) = ∃x(∀y RightOf(x,y))",
+    )
+
+
 def gerar_top_pares_binarios(
     df_objetos: pd.DataFrame,
     tensor_objetos: torch.Tensor,
@@ -1310,6 +1483,16 @@ def executar_consultas_ltn() -> None:
             tensor_objetos=tensor_objetos,
             modelos=modelos,
             exigir_objetos_distintos=True,
+        ),
+        consulta_5_last_on_the_left(
+            df_objetos=df_objetos,
+            tensor_objetos=tensor_objetos,
+            modelos=modelos,
+        ),
+        consulta_6_last_on_the_right(
+            df_objetos=df_objetos,
+            tensor_objetos=tensor_objetos,
+            modelos=modelos,
         ),
     ]
 

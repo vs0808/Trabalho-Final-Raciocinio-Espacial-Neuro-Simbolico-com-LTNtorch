@@ -106,7 +106,7 @@ def preparar_dados(
     print("\nPreparação concluída com sucesso.")
 
 
-def executar_treinamento() -> None:
+def executar_treinamento(seed: int = 42) -> None:
     """
     Executa o treinamento LTN.
 
@@ -117,6 +117,9 @@ def executar_treinamento() -> None:
     - se o ambiente ainda não tiver LTNtorch instalado, o usuário ainda consegue
       gerar os dados sintéticos e a verdade-terreno;
     - o treinamento fica opcional.
+
+    A seed recebida é a mesma usada na geração dos dados, garantindo que
+    execuções com seeds distintas sejam totalmente independentes.
     """
 
     print("\n" + "=" * 80)
@@ -131,7 +134,7 @@ def executar_treinamento() -> None:
         peso_axiomas=0.30,
         frac_treino=0.8,
         threshold=0.5,
-        seed=42,
+        seed=seed,
     )
 
 
@@ -196,7 +199,7 @@ def main() -> None:
     )
 
     if args.train:
-        executar_treinamento()
+        executar_treinamento(seed=args.seed)
 
 
 if __name__ == "__main__":

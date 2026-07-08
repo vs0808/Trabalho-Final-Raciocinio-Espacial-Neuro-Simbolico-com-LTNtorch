@@ -36,7 +36,7 @@ O satAgg aumentou, indicando que a base de conhecimento ficou mais satisfeita ao
 
 ## 4. Métricas finais
 
-As fórmulas das métricas clássicas utilizadas nesta avaliação estão documentadas em: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_classicas.md`.
+As fórmulas das métricas clássicas utilizadas nesta avaliação estão documentadas em: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/metricas_classicas.md`.
 
 ### Predicados binários
 
@@ -53,7 +53,7 @@ As fórmulas das métricas clássicas utilizadas nesta avaliação estão docume
 
 | relacao   |   accuracy |   precision |   recall |       f1 |   best_threshold |   best_accuracy |   best_precision |   best_recall |   best_f1 |
 |:----------|-----------:|------------:|---------:|---------:|-----------------:|----------------:|-----------------:|--------------:|----------:|
-| inBetween |   0.722101 |    0.692478 | 0.855776 | 0.765515 |              0.5 |        0.722101 |         0.692478 |      0.855776 |  0.765515 |
+| inBetween |   0.721739 |    0.692308 | 0.855092 | 0.765138 |              0.5 |        0.721739 |         0.692308 |      0.855092 |  0.765138 |
 
 ## 5. Diagnóstico específico
 
@@ -71,45 +71,45 @@ As fórmulas das métricas clássicas utilizadas nesta avaliação estão docume
   - Diagnóstico: `canStack` apresentou desempenho intermediário ou bom para uma relação composta.
   - Interpretação: como `canStack` depende de múltiplas condições espaciais e semânticas, é esperado que seja mais difícil que relações simples.
 
-- F1 de `inBetween`: `0.7655`
+- F1 de `inBetween`: `0.7651`
   - Diagnóstico: por ser uma relação ternária, é esperado que seja mais difícil que leftOf/rightOf.
 
 ## 6. Axiomas com menor satisfatibilidade
 
 | axioma                                  |   satisfatibilidade |
 |:----------------------------------------|--------------------:|
-| below_irreflexividade                   |            0.573941 |
-| above_irreflexividade                   |            0.574883 |
+| below_irreflexividade                   |            0.573922 |
+| above_irreflexividade                   |            0.574821 |
 | left_irreflexividade                    |            0.58603  |
-| right_irreflexividade                   |            0.587452 |
-| inbetween_implica_configuracao_espacial |            0.76166  |
-| above_implica_below_inverso             |            0.797164 |
-| below_implica_above_inverso             |            0.808869 |
-| can_stack_implica_above                 |            0.814434 |
-| left_implica_right_inverso              |            0.822371 |
-| right_implica_left_inverso              |            0.826674 |
+| right_irreflexividade                   |            0.587456 |
+| inbetween_implica_configuracao_espacial |            0.761649 |
+| above_implica_below_inverso             |            0.797148 |
+| below_implica_above_inverso             |            0.808886 |
+| can_stack_implica_above                 |            0.814449 |
+| left_implica_right_inverso              |            0.82237  |
+| right_implica_left_inverso              |            0.826675 |
 
 ## 7. Arquivos gerados
 
 ### Tabelas
 
-- `balanceamento_binario`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/balanceamento_relacoes_binarias.csv`
-- `balanceamento_ternario`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/balanceamento_relacoes_ternarias.csv`
-- `metricas_binarias`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_finais_binarias.csv`
-- `metricas_ternarias`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_finais_ternarias.csv`
-- `sat_individual`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/sat_individual_final.csv`
+- `balanceamento_binario`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/balanceamento_relacoes_binarias.csv`
+- `balanceamento_ternario`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/balanceamento_relacoes_ternarias.csv`
+- `metricas_binarias`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/metricas_finais_binarias.csv`
+- `metricas_ternarias`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/metricas_finais_ternarias.csv`
+- `sat_individual`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/sat_individual_final.csv`
 
 ### Gráficos
 
-- `loss_total`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/loss_total.png`
-- `losses_componentes`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/losses_componentes.png`
-- `satagg`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/satagg.png`
-- `f1_final`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/f1_final_por_predicado.png`
-- `balanceamento`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/proporcao_positivos_por_relacao.png`
+- `loss_total`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/plots/loss_total.png`
+- `losses_componentes`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/plots/losses_componentes.png`
+- `satagg`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/plots/satagg.png`
+- `f1_final`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/plots/f1_final_por_predicado.png`
+- `balanceamento`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/plots/proporcao_positivos_por_relacao.png`
 
 ### Fórmulas das métricas
 
-- `metricas_classicas`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_classicas.md`
+- `metricas_classicas`: `/Users/thalesaraujods/Developer/Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/.claude/worktrees/bold-neumann-10a099/results/metrics/metricas_classicas.md`
 
 ## 8. Próximo passo recomendado
 

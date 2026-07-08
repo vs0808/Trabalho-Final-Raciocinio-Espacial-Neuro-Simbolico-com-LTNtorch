@@ -606,6 +606,70 @@ def axiomas_inbetween(
     return axiomas
 
 
+def formulas_extremos_horizontais(
+    variaveis: dict[str, ltn.Variable],
+    predicados: dict[str, ltn.Predicate],
+    operadores: dict[str, Any],
+) -> dict[str, Any]:
+    """
+    Cria as formulas de consulta sobre os extremos horizontais da cena.
+
+    Formulas implementadas:
+
+    1. lastOnTheLeft:
+       lastOnTheLeft(x) = ∃x (∀y leftOf(x, y))
+       Existe um objeto x que esta a esquerda de todos os objetos y.
+       Esse objeto e o "ultimo da esquerda", ou seja, o mais a esquerda da cena.
+
+    2. lastOnTheRight:
+       lastOnTheRight(x) = ∃x (∀y rightOf(x, y))
+       Existe um objeto x que esta a direita de todos os objetos y.
+       Esse objeto e o "ultimo da direita", ou seja, o mais a direita da cena.
+
+    A avaliacao usa os quantificadores fuzzy do LTNtorch:
+    - Forall com AggregPMeanError(p=2);
+    - Exists com AggregPMean(p=2).
+
+    Observacao importante:
+    a quantificacao universal percorre todos os objetos y, incluindo o caso y = x.
+    Como leftOf e rightOf sao irreflexivos, leftOf(x, x) tende a 0, o que limita
+    o valor maximo da formula. Isso e esperado: o grau de verdade nunca chega a 1,
+    mas o objeto do extremo ainda maximiza a formula.
+
+    Essas formulas nao entram na base de conhecimento de treinamento.
+    Elas sao consultas de inferencia sobre o modelo ja treinado.
+    """
+
+    x = variaveis["x"]
+    y = variaveis["y"]
+
+    Forall = operadores["Forall"]
+    Exists = operadores["Exists"]
+
+    leftOf = predicados["leftOf"]
+    rightOf = predicados["rightOf"]
+
+    formulas: dict[str, Any] = {}
+
+    formulas["lastOnTheLeft"] = Exists(
+        x,
+        Forall(
+            y,
+            leftOf(x, y),
+        ),
+    )
+
+    formulas["lastOnTheRight"] = Exists(
+        x,
+        Forall(
+            y,
+            rightOf(x, y),
+        ),
+    )
+
+    return formulas
+
+
 def criar_base_conhecimento(
     tensor_objetos: torch.Tensor,
     predicados: dict[str, ltn.Predicate],

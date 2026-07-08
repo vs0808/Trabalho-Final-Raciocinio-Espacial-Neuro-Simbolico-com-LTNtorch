@@ -1002,6 +1002,48 @@ Fórmula aproximada:
 
 ---
 
+### Consulta 5
+
+```text
+Existe um objeto que esteja à esquerda de todos os outros (último da esquerda)?
+```
+
+Fórmula:
+
+```text
+lastOnTheLeft(x) = ∃x(∀y LeftOf(x,y))
+```
+
+---
+
+### Consulta 6
+
+```text
+Existe um objeto que esteja à direita de todos os outros (último da direita)?
+```
+
+Fórmula:
+
+```text
+lastOnTheRight(x) = ∃x(∀y RightOf(x,y))
+```
+
+As fórmulas das consultas 5 e 6 são construídas em `src/ltn_axioms.py`
+(função `formulas_extremos_horizontais`) e avaliadas em `src/query_ltn.py`
+com os quantificadores fuzzy do LTNtorch:
+
+- `Forall` com `AggregPMeanError(p=2)`;
+- `Exists` com `AggregPMean(p=2)`.
+
+Observação importante: como o `∀y` percorre todos os objetos, incluindo o caso
+`y = x`, e `leftOf`/`rightOf` são irreflexivos, o valor de verdade dessas
+fórmulas nunca chega a 1, mesmo para o objeto do extremo. Por isso, além do
+valor agregado, `query_ltn.py` reporta o objeto que maximiza a quantificação
+universal (a melhor evidência), permitindo identificar qual objeto é o extremo
+da cena.
+
+---
+
 ## 12. Organização do diretório `notebooks/`
 
 O diretório `notebooks/` fica na raiz do projeto e contém atualmente:
@@ -1046,6 +1088,38 @@ Essa sequência gera:
 8. diagnóstico;
 9. consultas compostas;
 10. explicações.
+
+### 13.1. Experimento com múltiplas seeds
+
+O script `src/run_experiments.py` repete o pipeline completo (geração de dados
++ treinamento LTN) com 5 seeds distintas e consolida os resultados:
+
+```bash
+python3 src/run_experiments.py
+```
+
+Por padrão, as seeds são `42, 43, 44, 45, 46`, com 25 objetos e 200 épocas por
+execução. Esses parâmetros podem ser alterados:
+
+```bash
+python3 src/run_experiments.py --seeds 10 20 30 40 50 --epochs 200 --n-objetos 25
+```
+
+Para cada execução, o script coleta da última época de treinamento:
+
+- o `satAgg` geral e a satisfatibilidade individual de cada axioma;
+- os valores das fórmulas `lastOnTheLeft` e `lastOnTheRight`;
+- Accuracy, Precision, Recall e F1 de cada predicado avaliado
+  (`leftOf`, `rightOf`, `below`, `above`, `closeTo`, `canStack`, `inBetween`).
+
+Saídas geradas:
+
+```text
+results/experiments/
+├── experimentos_multi_seed.csv   # tabela consolidada, uma linha por execução
+├── experimentos_multi_seed.md    # tabelas pivotadas por axioma e por métrica
+└── seed_<N>/                     # histórico de treinamento e resumo JSON por seed
+```
 
 ---
 
@@ -1120,4 +1194,21 @@ A principal contribuição está na combinação de:
 
 A decisão de transformar `closeTo` em predicado fuzzy determinístico foi importante porque mostrou que nem toda relação precisa ser aprendida por rede neural. Relações geométricas diretas podem ser melhor representadas por funções diferenciáveis conhecidas, enquanto relações compostas, como `canStack`, podem ser aprendidas e regularizadas por axiomas.
 
-O projeto está pronto para ser expandido com notebooks explicativos, novos experimentos, múltiplas seeds e análise comparativa entre predicados treináveis e determinísticos.
+### 14.1. Pendências obrigatórias do enunciado
+
+- [x] **Fórmulas `lastOnTheLeft` e `lastOnTheRight`** — concluído.
+  As fórmulas `lastOnTheLeft(x) = ∃x(∀y leftOf(x,y))` e
+  `lastOnTheRight(x) = ∃x(∀y rightOf(x,y))` foram implementadas em
+  `src/ltn_axioms.py` (função `formulas_extremos_horizontais`) e são avaliadas
+  como as consultas 5 e 6 de `src/query_ltn.py`, usando os quantificadores do
+  LTNtorch já adotados no projeto (`Forall` com `AggregPMeanError(p=2)` e
+  `Exists` com `AggregPMean(p=2)`). Ver seção 11.
+
+- [x] **Experimento com 5 execuções (múltiplas seeds)** — concluído.
+  O script `src/run_experiments.py` repete a geração de dados e o treinamento
+  com 5 seeds distintas (42 a 46) e consolida, por execução, o `satAgg` de cada
+  fórmula/axioma e as métricas Accuracy, Precision, Recall e F1 dos predicados,
+  em `results/experiments/experimentos_multi_seed.csv` e
+  `results/experiments/experimentos_multi_seed.md`. Ver seção 13.1.
+
+O projeto continua aberto para expansões, como notebooks explicativos e análise comparativa entre predicados treináveis e determinísticos.

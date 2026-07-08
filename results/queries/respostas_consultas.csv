@@ -1,5 +1,7 @@
 ﻿id,pergunta,formula,valor_verdade,resposta
-consulta_1,Existe algum objeto pequeno abaixo de um cilindro e à esquerda de um quadrado?,"∃x(IsSmall(x) ∧ ∃y(IsCylinder(y) ∧ Below(x,y)) ∧ ∃z(IsSquare(z) ∧ LeftOf(x,z)))",0.7273955020584211,Sim
-consulta_2,Existe um cone verde entre dois objetos?,"∃x,y,z(IsCone(x) ∧ IsGreen(x) ∧ InBetween(x,y,z))",0.8391939401626587,Sim
-consulta_3,"Se dois triângulos estão próximos, eles têm o mesmo tamanho?","∀x,y((IsTriangle(x) ∧ IsTriangle(y) ∧ CloseTo(x,y)) → SameSize(x,y))",0.9265936048356731,Sim
+consulta_1,Existe algum objeto pequeno abaixo de um cilindro e à esquerda de um quadrado?,"∃x(IsSmall(x) ∧ ∃y(IsCylinder(y) ∧ Below(x,y)) ∧ ∃z(IsSquare(z) ∧ LeftOf(x,z)))",0.7274159551122068,Sim
+consulta_2,Existe um cone verde entre dois objetos?,"∃x,y,z(IsCone(x) ∧ IsGreen(x) ∧ InBetween(x,y,z))",0.8391696810722351,Sim
+consulta_3,"Se dois triângulos estão próximos, eles têm o mesmo tamanho?","∀x,y((IsTriangle(x) ∧ IsTriangle(y) ∧ CloseTo(x,y)) → SameSize(x,y))",0.9265936048356367,Sim
 consulta_4,Existe algum objeto que pode ser empilhado sobre outro?,"∃x,y CanStack(x,y)",0.9498980641365051,Sim
+consulta_5,Existe um objeto que esteja à esquerda de todos os outros (último da esquerda)?,"lastOnTheLeft(x) = ∃x(∀y LeftOf(x,y))",0.4610823094844818,Não
+consulta_6,Existe um objeto que esteja à direita de todos os outros (último da direita)?,"lastOnTheRight(x) = ∃x(∀y RightOf(x,y))",0.4566880166530609,Não

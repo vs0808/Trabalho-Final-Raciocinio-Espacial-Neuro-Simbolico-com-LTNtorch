@@ -776,7 +776,7 @@ def treinar_ltn(
     threshold: float = 0.5,
     seed: int = 42,
     usar_loss_ponderada: bool = True,
-) -> None:
+) -> dict[str, Any]:
     """
     Executa o treinamento LTN.
 
@@ -812,6 +812,12 @@ def treinar_ltn(
 
     - usar_loss_ponderada:
       se True, aumenta o peso dos exemplos positivos em relações desbalanceadas.
+
+    Retorno:
+    dicionário com o histórico de treinamento, os modelos de avaliação,
+    o tensor de objetos e os caminhos dos arquivos gerados.
+    Isso permite que scripts de experimento (por exemplo, src/run_experiments.py)
+    consolidem métricas de várias execuções sem reler os arquivos.
     """
 
     definir_seed(seed)
@@ -1019,6 +1025,14 @@ def treinar_ltn(
 
     print("\nMétricas finais ternárias:")
     print(json.dumps(historico[-1]["metricas_ternarias"], indent=2, ensure_ascii=False))
+
+    return {
+        "historico": historico,
+        "modelos_avaliacao": modelos_avaliacao,
+        "tensor_objetos": tensor_objetos,
+        "caminho_metricas": caminho_metricas,
+        "caminho_modelo": caminho_modelo,
+    }
 
 
 if __name__ == "__main__":

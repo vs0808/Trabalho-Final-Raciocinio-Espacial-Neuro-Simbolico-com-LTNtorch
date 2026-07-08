@@ -540,6 +540,28 @@ A dependência `tabulate` é útil para gerar tabelas Markdown com `pandas.to_ma
 
 ---
 
+### 6.4. Pré-requisito no Windows: Visual C++ Redistributable
+
+No Windows, o PyTorch pode falhar ao importar com um erro do tipo:
+
+```text
+OSError: [WinError 1114] ... Error loading "...\torch\lib\c10.dll" or one of its dependencies.
+```
+
+Isso acontece quando o **Microsoft Visual C++ Redistributable x64** instalado na máquina está desatualizado em relação ao build do PyTorch. A correção é baixar e instalar a versão mais recente diretamente da Microsoft:
+
+```text
+https://aka.ms/vs/17/release/vc_redist.x64.exe
+```
+
+Após instalar, reabra o terminal (ou reative o venv) e teste:
+
+```powershell
+python -c "import torch; print(torch.__version__)"
+```
+
+---
+
 ## 7. Como executar o projeto
 
 O padrão adotado para execução é:
@@ -1011,9 +1033,7 @@ O diretório `notebooks/` deve ficar na raiz do projeto:
 notebooks/
 ```
 
-Ele será usado para criar notebooks explicativos e experimentais.
-
-Sugestão de notebooks futuros:
+Ele contém os notebooks explicativos e experimentais do projeto, já executados sobre os resultados reais do pipeline:
 
 ```text
 notebooks/
@@ -1026,24 +1046,17 @@ notebooks/
 └── 07_relatorio_experimentos.ipynb
 ```
 
-Cada notebook pode ter uma função:
+Função de cada notebook:
 
-- `01_visao_geral_dos_dados.ipynb`: explorar `objetos_sinteticos.csv`;
-- `02_visualizacao_cenario.ipynb`: explicar a cena 2D;
-- `03_ground_truth_relacoes.ipynb`: mostrar como as relações são calculadas;
-- `04_metricas_classicas.ipynb`: explicar Accuracy, Precision, Recall e F1;
-- `05_analise_treinamento.ipynb`: analisar loss, satAgg e métricas finais;
-- `06_consultas_ltn.ipynb`: explorar respostas de `query_ltn.py`;
-- `07_relatorio_experimentos.ipynb`: consolidar resultados para o relatório final.
+- `01_visao_geral_dos_dados.ipynb`: explora `objetos_sinteticos.csv`;
+- `02_visualizacao_cenario.ipynb`: exibe a cena 2D gerada;
+- `03_ground_truth_relacoes.ipynb`: mostra como as relações são calculadas;
+- `04_metricas_classicas.ipynb`: explica Accuracy, Precision, Recall e F1 com os números finais;
+- `05_analise_treinamento.ipynb`: analisa loss, satAgg e métricas finais;
+- `06_consultas_ltn.ipynb`: explora as respostas de `query_ltn.py`;
+- `07_relatorio_experimentos.ipynb`: consolida os resultados para o relatório final.
 
-Para criar o diretório agora:
-
-```bash
-mkdir -p notebooks
-touch notebooks/.gitkeep
-```
-
-O arquivo `.gitkeep` serve apenas para garantir que o diretório vazio seja versionado no Git.
+Para reexecutar todos os notebooks após rodar o pipeline novamente (ex.: com outra seed), abra cada um no Jupyter/VS Code e use "Restart & Run All".
 
 ---
 

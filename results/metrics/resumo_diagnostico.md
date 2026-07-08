@@ -36,7 +36,7 @@ O satAgg aumentou, indicando que a base de conhecimento ficou mais satisfeita ao
 
 ## 4. Métricas finais
 
-As fórmulas das métricas clássicas utilizadas nesta avaliação estão documentadas em: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_classicas.md`.
+As fórmulas das métricas clássicas utilizadas nesta avaliação estão documentadas em: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\metricas_classicas.md`.
 
 ### Predicados binários
 
@@ -79,37 +79,37 @@ As fórmulas das métricas clássicas utilizadas nesta avaliação estão docume
 | axioma                                  |   satisfatibilidade |
 |:----------------------------------------|--------------------:|
 | below_irreflexividade                   |            0.573941 |
-| above_irreflexividade                   |            0.574883 |
-| left_irreflexividade                    |            0.58603  |
-| right_irreflexividade                   |            0.587452 |
-| inbetween_implica_configuracao_espacial |            0.76166  |
-| above_implica_below_inverso             |            0.797164 |
-| below_implica_above_inverso             |            0.808869 |
-| can_stack_implica_above                 |            0.814434 |
-| left_implica_right_inverso              |            0.822371 |
-| right_implica_left_inverso              |            0.826674 |
+| above_irreflexividade                   |            0.574872 |
+| left_irreflexividade                    |            0.586028 |
+| right_irreflexividade                   |            0.587454 |
+| inbetween_implica_configuracao_espacial |            0.761661 |
+| above_implica_below_inverso             |            0.79716  |
+| below_implica_above_inverso             |            0.808872 |
+| can_stack_implica_above                 |            0.814417 |
+| left_implica_right_inverso              |            0.82237  |
+| right_implica_left_inverso              |            0.826675 |
 
 ## 7. Arquivos gerados
 
 ### Tabelas
 
-- `balanceamento_binario`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/balanceamento_relacoes_binarias.csv`
-- `balanceamento_ternario`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/balanceamento_relacoes_ternarias.csv`
-- `metricas_binarias`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_finais_binarias.csv`
-- `metricas_ternarias`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_finais_ternarias.csv`
-- `sat_individual`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/sat_individual_final.csv`
+- `balanceamento_binario`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\balanceamento_relacoes_binarias.csv`
+- `balanceamento_ternario`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\balanceamento_relacoes_ternarias.csv`
+- `metricas_binarias`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\metricas_finais_binarias.csv`
+- `metricas_ternarias`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\metricas_finais_ternarias.csv`
+- `sat_individual`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\sat_individual_final.csv`
 
 ### Gráficos
 
-- `loss_total`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/loss_total.png`
-- `losses_componentes`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/losses_componentes.png`
-- `satagg`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/satagg.png`
-- `f1_final`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/f1_final_por_predicado.png`
-- `balanceamento`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/plots/proporcao_positivos_por_relacao.png`
+- `loss_total`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\plots\loss_total.png`
+- `losses_componentes`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\plots\losses_componentes.png`
+- `satagg`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\plots\satagg.png`
+- `f1_final`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\plots\f1_final_por_predicado.png`
+- `balanceamento`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\plots\proporcao_positivos_por_relacao.png`
 
 ### Fórmulas das métricas
 
-- `metricas_classicas`: `/home/viniciussousa/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/results/metrics/metricas_classicas.md`
+- `metricas_classicas`: `C:\Users\Sara IRMA\Documents\IA\Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch\results\metrics\metricas_classicas.md`
 
 ## 8. Próximo passo recomendado
 

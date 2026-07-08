@@ -215,7 +215,7 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
 3. `above(22,10)` = `0.9384`
    - A: Objeto 22 (verde, cone, grande, x=0.6619, y=0.5570)
    - B: Objeto 10 (azul, cilindro, pequeno, x=0.1895, y=0.1299)
-4. `above(23,14)` = `0.9371`
+4. `above(23,14)` = `0.9370`
    - A: Objeto 23 (verde, quadrado, pequeno, x=0.4064, y=0.8140)
    - B: Objeto 14 (azul, circulo, grande, x=0.1398, y=0.1999)
 5. `above(6,10)` = `0.9324`
@@ -275,7 +275,7 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
 1. `canStack(6,14)` = `0.9499`
    - A: Objeto 6 (verde, triangulo, grande, x=0.3545, y=0.9707)
    - B: Objeto 14 (azul, circulo, grande, x=0.1398, y=0.1999)
-2. `canStack(6,2)` = `0.9462`
+2. `canStack(6,2)` = `0.9463`
    - A: Objeto 6 (verde, triangulo, grande, x=0.3545, y=0.9707)
    - B: Objeto 2 (azul, cilindro, grande, x=0.7861, y=0.1281)
 3. `canStack(6,4)` = `0.9424`
@@ -290,22 +290,22 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
 6. `canStack(6,13)` = `0.9036`
    - A: Objeto 6 (verde, triangulo, grande, x=0.3545, y=0.9707)
    - B: Objeto 13 (azul, quadrado, grande, x=0.3875, y=0.2883)
-7. `canStack(1,14)` = `0.8942`
+7. `canStack(1,14)` = `0.8943`
    - A: Objeto 1 (azul, cone, grande, x=0.0942, y=0.9756)
    - B: Objeto 14 (azul, circulo, grande, x=0.1398, y=0.1999)
-8. `canStack(22,4)` = `0.8925`
+8. `canStack(22,4)` = `0.8926`
    - A: Objeto 22 (verde, cone, grande, x=0.6619, y=0.5570)
    - B: Objeto 4 (vermelho, cilindro, grande, x=0.4434, y=0.2272)
-9. `canStack(22,2)` = `0.8916`
+9. `canStack(22,2)` = `0.8917`
    - A: Objeto 22 (verde, cone, grande, x=0.6619, y=0.5570)
    - B: Objeto 2 (azul, cilindro, grande, x=0.7861, y=0.1281)
-10. `canStack(23,10)` = `0.8915`
+10. `canStack(23,10)` = `0.8914`
    - A: Objeto 23 (verde, quadrado, pequeno, x=0.4064, y=0.8140)
    - B: Objeto 10 (azul, cilindro, pequeno, x=0.1895, y=0.1299)
 
 ## 3. Top triplas para `inBetween`
 
-1. `inBetween(16,24,3)` = `0.9376`
+1. `inBetween(16,24,3)` = `0.9375`
    - X: Objeto 16 (vermelho, circulo, pequeno, x=0.4589, y=0.5687)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
@@ -313,35 +313,35 @@ Os valores de verdade estão no intervalo `[0, 1]`, em que valores próximos de 
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
-3. `inBetween(12,24,3)` = `0.9309`
+3. `inBetween(12,24,3)` = `0.9308`
    - X: Objeto 12 (azul, triangulo, pequeno, x=0.7003, y=0.3124)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
-4. `inBetween(16,3,24)` = `0.9285`
+4. `inBetween(16,3,24)` = `0.9284`
    - X: Objeto 16 (vermelho, circulo, pequeno, x=0.4589, y=0.5687)
    - Y: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
    - Z: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
-5. `inBetween(9,3,24)` = `0.9273`
+5. `inBetween(9,3,24)` = `0.9274`
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
    - Z: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
-6. `inBetween(5,24,3)` = `0.9161`
+6. `inBetween(5,24,3)` = `0.9160`
    - X: Objeto 5 (vermelho, circulo, grande, x=0.8276, y=0.6317)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
-7. `inBetween(12,3,24)` = `0.9148`
+7. `inBetween(12,3,24)` = `0.9147`
    - X: Objeto 12 (azul, triangulo, pequeno, x=0.7003, y=0.3124)
    - Y: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
    - Z: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
-8. `inBetween(9,24,18)` = `0.9121`
+8. `inBetween(9,24,18)` = `0.9119`
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 18 (verde, cilindro, pequeno, x=0.7650, y=0.6347)
-9. `inBetween(9,24,6)` = `0.9115`
+9. `inBetween(9,24,6)` = `0.9114`
    - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
    - Z: Objeto 6 (verde, triangulo, grande, x=0.3545, y=0.9707)
-10. `inBetween(20,24,3)` = `0.9102`
-   - X: Objeto 20 (azul, triangulo, pequeno, x=0.2146, y=0.4085)
+10. `inBetween(9,24,5)` = `0.9102`
+   - X: Objeto 9 (azul, circulo, pequeno, x=0.3258, y=0.3705)
    - Y: Objeto 24 (azul, cone, grande, x=0.0227, y=0.0900)
-   - Z: Objeto 3 (verde, cilindro, grande, x=0.9268, y=0.6439)
+   - Z: Objeto 5 (vermelho, circulo, grande, x=0.8276, y=0.6317)

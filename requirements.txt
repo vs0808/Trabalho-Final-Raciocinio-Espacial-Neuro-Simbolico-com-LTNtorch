@@ -4,4 +4,3 @@ matplotlib
 torch
 ltntorch
 scikit-learn
-ltn

@@ -116,7 +116,7 @@ Esse vetor representa um objeto em uma posição `(x, y)`, com cor verde, forma 
 A estrutura do projeto fica organizada da seguinte forma:
 
 ```text
-Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/
+Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/
 ├── main.py
 ├── README.md
 ├── requirements.txt
@@ -130,7 +130,7 @@ Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/
 │       └── ground_truth_triplas.csv
 │
 ├── notebooks/
-│   └── .gitkeep
+│   └── 01_exploracao_dados.ipynb
 │
 ├── results/
 │   ├── plots/
@@ -488,7 +488,7 @@ results/queries/explicacoes_consultas.md
 Entre na raiz do projeto:
 
 ```bash
-cd ~/Documentos/IA-EC034/TrabalhoFinal/Trabalho-Final-de-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch
+cd Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch
 ```
 
 ---
@@ -524,7 +524,7 @@ Com o ambiente virtual ativo:
 pip install -r requirements.txt
 ```
 
-Um `requirements.txt` esperado para este projeto pode conter:
+O `requirements.txt` do projeto contém:
 
 ```text
 numpy
@@ -533,10 +533,9 @@ matplotlib
 torch
 ltntorch
 scikit-learn
-tabulate
 ```
 
-A dependência `tabulate` é útil para gerar tabelas Markdown com `pandas.to_markdown()`.
+O pacote `ltntorch` (LTNtorch) é o que fornece o módulo `ltn` usado nos imports do código.
 
 ---
 
@@ -1005,45 +1004,23 @@ Fórmula aproximada:
 
 ## 12. Organização do diretório `notebooks/`
 
-O diretório `notebooks/` deve ficar na raiz do projeto:
+O diretório `notebooks/` fica na raiz do projeto e contém atualmente:
 
 ```text
 notebooks/
+└── 01_exploracao_dados.ipynb
 ```
 
-Ele será usado para criar notebooks explicativos e experimentais.
+- `01_exploracao_dados.ipynb`: exploração dos dados sintéticos gerados (`objetos_sinteticos.csv`).
 
 Sugestão de notebooks futuros:
 
-```text
-notebooks/
-├── 01_visao_geral_dos_dados.ipynb
-├── 02_visualizacao_cenario.ipynb
-├── 03_ground_truth_relacoes.ipynb
-├── 04_metricas_classicas.ipynb
-├── 05_analise_treinamento.ipynb
-├── 06_consultas_ltn.ipynb
-└── 07_relatorio_experimentos.ipynb
-```
-
-Cada notebook pode ter uma função:
-
-- `01_visao_geral_dos_dados.ipynb`: explorar `objetos_sinteticos.csv`;
 - `02_visualizacao_cenario.ipynb`: explicar a cena 2D;
 - `03_ground_truth_relacoes.ipynb`: mostrar como as relações são calculadas;
 - `04_metricas_classicas.ipynb`: explicar Accuracy, Precision, Recall e F1;
 - `05_analise_treinamento.ipynb`: analisar loss, satAgg e métricas finais;
 - `06_consultas_ltn.ipynb`: explorar respostas de `query_ltn.py`;
 - `07_relatorio_experimentos.ipynb`: consolidar resultados para o relatório final.
-
-Para criar o diretório agora:
-
-```bash
-mkdir -p notebooks
-touch notebooks/.gitkeep
-```
-
-O arquivo `.gitkeep` serve apenas para garantir que o diretório vazio seja versionado no Git.
 
 ---
 
@@ -1072,7 +1049,63 @@ Essa sequência gera:
 
 ---
 
-## 14. Observações finais
+## 14. Conformidade com o enunciado e pendências
+
+Esta seção compara o estado atual do projeto com as tarefas definidas no enunciado do trabalho (ICC260 — Raciocínio Espacial Neuro-Simbólico com LTNtorch).
+
+### 14.1. Tarefa 1 — Taxonomia e Formas (2 pontos) — ✅ Completa
+
+- [x] Geração de 25 objetos aleatórios com coordenadas, cores, formas e tamanho (`src/data_generator.py`);
+- [x] Plot do cenário gerado (`results/plots/cenario_sintetico.png`);
+- [x] Predicados de forma: `isCircle`, `isSquare`, `isCylinder`, `isCone`, `isTriangle`;
+- [x] Predicados de tamanho: `isSmall`, `isBig`;
+- [x] Axioma de forma única (exclusividade) e de cobertura (completude), incluindo também cores e tamanho (`src/ltn_axioms.py`).
+
+### 14.2. Tarefa 2 — Raciocínio Espacial Horizontal (5 pontos) — ⚠️ Quase completa
+
+- [x] Predicados `leftOf(x,y)`, `rightOf(x,y)`, `closeTo(x,y)`, `inBetween(x,y,z)`;
+- [x] Axiomas de irreflexividade, assimetria, inverso e transitividade;
+- [x] `closeTo` implementado como predicado fuzzy determinístico baseado na distância euclidiana (sigmoide sobre o threshold, variação do kernel gaussiano sugerido no enunciado);
+- [x] `inBetween` com a fórmula lógica `(leftOf(y,x) ∧ rightOf(z,x)) ∨ (leftOf(z,x) ∧ rightOf(y,x))` (estendida também para o eixo vertical);
+- [ ] **Pendente:** `lastOnTheLeft(x)` — fórmula `∃x (∀y leftOf(x,y))`;
+- [ ] **Pendente:** `lastOnTheRight(x)` — fórmula `∃x (∀y rightOf(x,y))`;
+- [ ] Opcional (não implementado): consulta existencial "existe um objeto à esquerda de todos os quadrados";
+- [ ] Opcional (não implementado): restrição "todo quadrado está à direita de todo círculo".
+
+### 14.3. Tarefa 3 — Raciocínio Vertical — ✅ Completa
+
+- [x] Predicados `below(x,y)` e `above(x,y)`;
+- [x] Axiomas de inverso e transitividade (além de irreflexividade e assimetria);
+- [x] `canStack(x,y)` com axiomas: base não pode ser cone nem triângulo, e `canStack(x,y) → above(x,y)`.
+
+### 14.4. Tarefa 4 — Raciocínio Composto (2 pontos) — ✅ Completa
+
+- [x] Consulta 1: filtragem composta (objeto pequeno abaixo de cilindro e à esquerda de quadrado);
+- [x] Consulta 2: cone verde entre dois objetos (`inBetween`);
+- [x] Consulta 3: restrição de proximidade (triângulos próximos → mesmo tamanho);
+- [x] Consulta extra: existência de empilhamento (`canStack`).
+
+### 14.5. Entregas (1 ponto) — ⚠️ Parcial
+
+- [x] Código e texto em Markdown no GitHub;
+- [x] Descrição de NeSy e LTN (Seção 2);
+- [x] Descrição do dataset CLEVR simplificado (Seções 1 e 3);
+- [x] Valor de satisfação das fórmulas (`results/metrics/sat_individual_final.csv`) e métricas no conjunto de teste;
+- [ ] **Pendente:** resultados para **5 execuções com 5 datasets aleatórios distintos** (repetir a geração de dados 5 vezes com seeds diferentes e reportar, para cada execução: satAgg de cada fórmula, Accuracy, Precision, Recall e F1). Hoje o pipeline roda com um único dataset (seed 42). É possível executar manualmente com `python3 main.py --train --no-show --seed <N>`, mas falta um script que automatize as 5 execuções e consolide os resultados em tabela.
+
+### 14.6. Ponto Extra — ✅ Completo
+
+- [x] Explicações de cada pergunta/raciocínio geradas em `results/queries/explicacoes_consultas.md` (melhor evidência, componentes da conjunção, pior caso das regras universais, top pares e top triplas).
+
+### 14.7. Outras pendências técnicas
+
+- `results/relatorio.md` está vazio — preencher com o relatório final ou remover;
+- `results/analysis/` duplica o conteúdo de `results/metrics/` — manter apenas um dos dois;
+- Os axiomas de irreflexividade apresentam satisfatibilidade baixa (~0.57–0.59 em `sat_individual_final.csv`) — vale investigar/ajustar antes da entrega final.
+
+---
+
+## 15. Observações finais
 
 Este projeto mostra uma aplicação prática de raciocínio espacial neuro-simbólico com LTNtorch.
 

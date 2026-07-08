@@ -533,9 +533,12 @@ matplotlib
 torch
 ltntorch
 scikit-learn
+tabulate
 ```
 
 O pacote `ltntorch` (LTNtorch) é o que fornece o módulo `ltn` usado nos imports do código.
+
+O pacote `tabulate` é usado por `pandas.to_markdown()` na consolidação dos experimentos com múltiplas seeds (`src/run_experiments.py`).
 
 ---
 
@@ -1135,14 +1138,14 @@ Esta seção compara o estado atual do projeto com as tarefas definidas no enunc
 - [x] Predicados de tamanho: `isSmall`, `isBig`;
 - [x] Axioma de forma única (exclusividade) e de cobertura (completude), incluindo também cores e tamanho (`src/ltn_axioms.py`).
 
-### 14.2. Tarefa 2 — Raciocínio Espacial Horizontal (5 pontos) — ⚠️ Quase completa
+### 14.2. Tarefa 2 — Raciocínio Espacial Horizontal (5 pontos) — ✅ Completa (itens opcionais em aberto)
 
 - [x] Predicados `leftOf(x,y)`, `rightOf(x,y)`, `closeTo(x,y)`, `inBetween(x,y,z)`;
 - [x] Axiomas de irreflexividade, assimetria, inverso e transitividade;
 - [x] `closeTo` implementado como predicado fuzzy determinístico baseado na distância euclidiana (sigmoide sobre o threshold, variação do kernel gaussiano sugerido no enunciado);
 - [x] `inBetween` com a fórmula lógica `(leftOf(y,x) ∧ rightOf(z,x)) ∨ (leftOf(z,x) ∧ rightOf(y,x))` (estendida também para o eixo vertical);
-- [ ] **Pendente:** `lastOnTheLeft(x)` — fórmula `∃x (∀y leftOf(x,y))`;
-- [ ] **Pendente:** `lastOnTheRight(x)` — fórmula `∃x (∀y rightOf(x,y))`;
+- [x] `lastOnTheLeft(x)` — fórmula `∃x (∀y leftOf(x,y))`, implementada em `src/ltn_axioms.py` (função `formulas_extremos_horizontais`) e avaliada como a consulta 5 de `src/query_ltn.py` com os quantificadores do LTNtorch (ver seção 11);
+- [x] `lastOnTheRight(x)` — fórmula `∃x (∀y rightOf(x,y))`, implementada em `src/ltn_axioms.py` e avaliada como a consulta 6 de `src/query_ltn.py` (ver seção 11);
 - [ ] Opcional (não implementado): consulta existencial "existe um objeto à esquerda de todos os quadrados";
 - [ ] Opcional (não implementado): restrição "todo quadrado está à direita de todo círculo".
 
@@ -1159,13 +1162,13 @@ Esta seção compara o estado atual do projeto com as tarefas definidas no enunc
 - [x] Consulta 3: restrição de proximidade (triângulos próximos → mesmo tamanho);
 - [x] Consulta extra: existência de empilhamento (`canStack`).
 
-### 14.5. Entregas (1 ponto) — ⚠️ Parcial
+### 14.5. Entregas (1 ponto) — ✅ Completa
 
 - [x] Código e texto em Markdown no GitHub;
 - [x] Descrição de NeSy e LTN (Seção 2);
 - [x] Descrição do dataset CLEVR simplificado (Seções 1 e 3);
 - [x] Valor de satisfação das fórmulas (`results/metrics/sat_individual_final.csv`) e métricas no conjunto de teste;
-- [ ] **Pendente:** resultados para **5 execuções com 5 datasets aleatórios distintos** (repetir a geração de dados 5 vezes com seeds diferentes e reportar, para cada execução: satAgg de cada fórmula, Accuracy, Precision, Recall e F1). Hoje o pipeline roda com um único dataset (seed 42). É possível executar manualmente com `python3 main.py --train --no-show --seed <N>`, mas falta um script que automatize as 5 execuções e consolide os resultados em tabela.
+- [x] Resultados para **5 execuções com 5 datasets aleatórios distintos**: o script `src/run_experiments.py` repete a geração de dados e o treinamento com 5 seeds distintas (42 a 46) e consolida, por execução, o satAgg de cada fórmula/axioma e as métricas Accuracy, Precision, Recall e F1 dos predicados, em `results/experiments/experimentos_multi_seed.csv` e `results/experiments/experimentos_multi_seed.md` (ver seção 13.1).
 
 ### 14.6. Ponto Extra — ✅ Completo
 
@@ -1193,22 +1196,5 @@ A principal contribuição está na combinação de:
 - consultas compostas explicáveis.
 
 A decisão de transformar `closeTo` em predicado fuzzy determinístico foi importante porque mostrou que nem toda relação precisa ser aprendida por rede neural. Relações geométricas diretas podem ser melhor representadas por funções diferenciáveis conhecidas, enquanto relações compostas, como `canStack`, podem ser aprendidas e regularizadas por axiomas.
-
-### 14.1. Pendências obrigatórias do enunciado
-
-- [x] **Fórmulas `lastOnTheLeft` e `lastOnTheRight`** — concluído.
-  As fórmulas `lastOnTheLeft(x) = ∃x(∀y leftOf(x,y))` e
-  `lastOnTheRight(x) = ∃x(∀y rightOf(x,y))` foram implementadas em
-  `src/ltn_axioms.py` (função `formulas_extremos_horizontais`) e são avaliadas
-  como as consultas 5 e 6 de `src/query_ltn.py`, usando os quantificadores do
-  LTNtorch já adotados no projeto (`Forall` com `AggregPMeanError(p=2)` e
-  `Exists` com `AggregPMean(p=2)`). Ver seção 11.
-
-- [x] **Experimento com 5 execuções (múltiplas seeds)** — concluído.
-  O script `src/run_experiments.py` repete a geração de dados e o treinamento
-  com 5 seeds distintas (42 a 46) e consolida, por execução, o `satAgg` de cada
-  fórmula/axioma e as métricas Accuracy, Precision, Recall e F1 dos predicados,
-  em `results/experiments/experimentos_multi_seed.csv` e
-  `results/experiments/experimentos_multi_seed.md`. Ver seção 13.1.
 
 O projeto continua aberto para expansões, como notebooks explicativos e análise comparativa entre predicados treináveis e determinísticos.

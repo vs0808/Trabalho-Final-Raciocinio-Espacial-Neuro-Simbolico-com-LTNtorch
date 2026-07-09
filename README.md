@@ -130,7 +130,13 @@ Trabalho-Final-Raciocinio-Espacial-Neuro-Simbolico-com-LTNtorch/
 │       └── ground_truth_triplas.csv
 │
 ├── notebooks/
-│   └── 01_exploracao_dados.ipynb
+│   ├── 01_visao_geral_dos_dados.ipynb
+│   ├── 02_visualizacao_cenario.ipynb
+│   ├── 03_ground_truth_relacoes.ipynb
+│   ├── 04_metricas_classicas.ipynb
+│   ├── 05_analise_treinamento.ipynb
+│   ├── 06_consultas_ltn.ipynb
+│   └── 07_relatorio_experimentos.ipynb
 │
 ├── results/
 │   ├── plots/
@@ -539,6 +545,28 @@ tabulate
 O pacote `ltntorch` (LTNtorch) é o que fornece o módulo `ltn` usado nos imports do código.
 
 O pacote `tabulate` é usado por `pandas.to_markdown()` na consolidação dos experimentos com múltiplas seeds (`src/run_experiments.py`).
+
+---
+
+### 6.4. Pré-requisito no Windows: Visual C++ Redistributable
+
+No Windows, o PyTorch pode falhar ao importar com um erro do tipo:
+
+```text
+OSError: [WinError 1114] ... Error loading "...\torch\lib\c10.dll" or one of its dependencies.
+```
+
+Isso acontece quando o **Microsoft Visual C++ Redistributable x64** instalado na máquina está desatualizado em relação ao build do PyTorch. A correção é baixar e instalar a versão mais recente diretamente da Microsoft:
+
+```text
+https://aka.ms/vs/17/release/vc_redist.x64.exe
+```
+
+Após instalar, reabra o terminal (ou reative o venv) e teste:
+
+```powershell
+python -c "import torch; print(torch.__version__)"
+```
 
 ---
 
@@ -1049,23 +1077,30 @@ da cena.
 
 ## 12. Organização do diretório `notebooks/`
 
-O diretório `notebooks/` fica na raiz do projeto e contém atualmente:
+O diretório `notebooks/` fica na raiz do projeto e contém os notebooks explicativos e experimentais, já executados sobre os resultados reais do pipeline:
 
 ```text
 notebooks/
-└── 01_exploracao_dados.ipynb
+├── 01_visao_geral_dos_dados.ipynb
+├── 02_visualizacao_cenario.ipynb
+├── 03_ground_truth_relacoes.ipynb
+├── 04_metricas_classicas.ipynb
+├── 05_analise_treinamento.ipynb
+├── 06_consultas_ltn.ipynb
+└── 07_relatorio_experimentos.ipynb
 ```
 
-- `01_exploracao_dados.ipynb`: exploração dos dados sintéticos gerados (`objetos_sinteticos.csv`).
+Função de cada notebook:
 
-Sugestão de notebooks futuros:
+- `01_visao_geral_dos_dados.ipynb`: explora `objetos_sinteticos.csv`;
+- `02_visualizacao_cenario.ipynb`: exibe a cena 2D gerada;
+- `03_ground_truth_relacoes.ipynb`: mostra como as relações são calculadas;
+- `04_metricas_classicas.ipynb`: explica Accuracy, Precision, Recall e F1 com os números finais;
+- `05_analise_treinamento.ipynb`: analisa loss, satAgg e métricas finais;
+- `06_consultas_ltn.ipynb`: explora as respostas de `query_ltn.py`;
+- `07_relatorio_experimentos.ipynb`: consolida os resultados para o relatório final.
 
-- `02_visualizacao_cenario.ipynb`: explicar a cena 2D;
-- `03_ground_truth_relacoes.ipynb`: mostrar como as relações são calculadas;
-- `04_metricas_classicas.ipynb`: explicar Accuracy, Precision, Recall e F1;
-- `05_analise_treinamento.ipynb`: analisar loss, satAgg e métricas finais;
-- `06_consultas_ltn.ipynb`: explorar respostas de `query_ltn.py`;
-- `07_relatorio_experimentos.ipynb`: consolidar resultados para o relatório final.
+Para reexecutar todos os notebooks após rodar o pipeline novamente (ex.: com outra seed), abra cada um no Jupyter/VS Code e use "Restart & Run All".
 
 ---
 
@@ -1176,7 +1211,7 @@ Esta seção compara o estado atual do projeto com as tarefas definidas no enunc
 
 ### 14.7. Outras pendências técnicas
 
-- `results/relatorio.md` está vazio — preencher com o relatório final ou remover;
+- [x] `results/relatorio.md` preenchido com o relatório final;
 - `results/analysis/` duplica o conteúdo de `results/metrics/` — manter apenas um dos dois;
 - Os axiomas de irreflexividade apresentam satisfatibilidade baixa (~0.57–0.59 em `sat_individual_final.csv`) — vale investigar/ajustar antes da entrega final.
 
